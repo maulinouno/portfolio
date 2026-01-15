@@ -1,0 +1,24 @@
+{
+    "name": "Achmad Maulana",
+    "role": "Lead Software Engineer",
+    "description": "Lead Software Engineer with 7+ years of experience building and scaling marketplace, fintech, and enterprise platforms across Southeast Asia.",
+    "subDescription": "Proven in delivering revenue-critical systems including payments, bidding engines, logistics, inventory, and financial integrations. Experienced in Go, distributed systems, and microservices, with hands-on leadership in driving execution.",
+    "tags": [
+        "Go",
+        "Java",
+        "Spring Boot",
+        "PHP",
+        "Laravel",
+        "Microservices",
+        "Kafka",
+        "Redis",
+        "PostgreSQL",
+        "MySQL",
+        "Elasticsearch",
+        "C#",
+        ".Net",
+        "EF Core",
+        "SQL Server",
+        "QuestDB"
+    ]
+}

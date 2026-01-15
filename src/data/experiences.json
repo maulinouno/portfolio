@@ -1,0 +1,182 @@
+[
+    {
+        "id": "renos-lead",
+        "date": "May 2024 – Present",
+        "title": "Lead Software Engineer",
+        "company": "Renos.id",
+        "description": "Leading regional projects (ID, TH), ensuring scalable and localized marketplace solutions.",
+        "color": "cyan",
+        "bullets": [
+            "Built fullstack solutions using Go (backend) and Next.js (frontend).",
+            "Designed Bidding System, Hometrend System, and Design & Build Platform.",
+            "Built 3D Room Decoration Add-on App using Vite.js.",
+            "Integrated multiple financial flows into NetSuite.",
+            "Coordinated technical decisions, backlog prioritization, and mentored engineers."
+        ],
+        "projects": [
+            {
+                "title": "Bidding System",
+                "tech": "",
+                "tags": [
+                    "Go",
+                    "Next.js",
+                    "PostgreSQL",
+                    "Elasticsearch"
+                ]
+            },
+            {
+                "title": "Hometrend System",
+                "tech": "",
+                "tags": [
+                    "Go",
+                    "Next.js",
+                    "PostgreSQL",
+                    "Elasticsearch"
+                ]
+            },
+            {
+                "title": "Design & Build Platform",
+                "tech": "",
+                "tags": [
+                    "Go",
+                    "Next.js",
+                    "PostgreSQL"
+                ]
+            },
+            {
+                "title": "3D Room Decoration Add-on App",
+                "tech": "",
+                "tags": [
+                    "Vite.js",
+                    "React.js",
+                    "Three.js"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "renos-senior",
+        "date": "Nov 2022 – Apr 2024",
+        "title": "Senior Software Engineer (Backend)",
+        "company": "Renos.id",
+        "description": "Go backend for marketplace listings, users, transactions, and internal microservices.",
+        "color": "blue",
+        "bullets": [
+            "Integrated Jubelio (OMS), 3PL logistics, and multiple payment gateways.",
+            "Revamped legacy PHP services to Go microservices.",
+            "Implemented Elasticsearch for fast product search and analytics.",
+            "Optimized internal APIs and enforced unit testing standards."
+        ],
+        "projects": [
+            {
+                "title": "Renos.id",
+                "tech": "Go microservices for listings, users, transactions, and internal microservices.",
+                "tags": [
+                    "Go",
+                    "Redis",
+                    "PostgreSQL",
+                    "Elasticsearch",
+                    "Sentry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "synapsis",
+        "date": "Jul 2024 – Jan 2025",
+        "title": "Freelance Backend",
+        "company": "Synapsis.id",
+        "description": "Built concurrent backend systems for monitoring and IoT.",
+        "color": "purple",
+        "projects": [
+            {
+                "title": "DCM (Monitoring)",
+                "tech": "Data center monitoring with WebSocket CCTV & sensors.",
+                "tags": [
+                    "Go",
+                    "Kafka",
+                    "QuestDB"
+                ]
+            },
+            {
+                "title": "DMS Enercentrik",
+                "tech": "IoT driver monitoring (JTT protocol).",
+                "tags": [
+                    "Go",
+                    "Kafka",
+                    "QuestDB"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "tetamba",
+        "date": "Oct 2018 – Sep 2023",
+        "title": "Software Engineer",
+        "company": "Tetamba Studio",
+        "description": "Delivered enterprise systems for publishing, banking, and financial clients.",
+        "color": "emerald",
+        "projects": [
+            {
+                "title": "Ecohub (BRI) - Backend",
+                "tech": "Microsvc marketplace with BRIVA & external partners.",
+                "tags": [
+                    "Go",
+                    "Redis",
+                    "Kafka"
+                ]
+            },
+            {
+                "title": "Procurement FAM (BRI) - Backend",
+                "tech": "Procurement & asset management backend.",
+                "tags": [
+                    "Java",
+                    "Spring Boot"
+                ]
+            },
+            {
+                "title": "iNMS Dashboard (BRI) - Fullstack",
+                "tech": "Network metrics monitoring dashboard.",
+                "tags": [
+                    "Go",
+                    "Laravel"
+                ]
+            },
+            {
+                "title": "Penjaminan Terpadu (Jamkrindo) - Fullstack",
+                "tech": "Underwriting system (IJP, Accrual, Reporting).",
+                "tags": [
+                    "Java",
+                    "Spring Boot",
+                    "PHP"
+                ]
+            },
+            {
+                "title": "FLPP BTN (Jamkrindo) - Fullstack",
+                "tech": "Guarantee & claim web system for BTN.",
+                "tags": [
+                    "Java",
+                    "Spring Boot",
+                    "PHP"
+                ]
+            },
+            {
+                "title": "E-Learning (Salemba Empat) - Backend",
+                "tech": "Interactive learning with exams & modules.",
+                "tags": [
+                    "C#",
+                    "EF Core"
+                ]
+            },
+            {
+                "title": "Book Marketplace (Salemba Empat) - Backend",
+                "tech": "Marketplace backend & CMS.",
+                "tags": [
+                    "C#",
+                    "EF Core",
+                    "Go"
+                ]
+            }
+        ]
+    }
+]
