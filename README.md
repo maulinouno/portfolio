@@ -1,30 +1,71 @@
-# React + TypeScript + Vite
+# Lanavi 3D Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Portfolio Preview](./public/preview.png)
 
-Currently, two official plugins are available:
+A high-performance, immersive 3D portfolio website built with React, Three.js, and Framer Motion. This project features a 3D interactive room, detailed project cards, and a sleek, modern UI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **Framework**: [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **3D Graphics**: [Three.js](https://threejs.org/) + [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) + [Drei](https://github.com/pmndrs/drei)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Styling**: [TailwindCSS](https://tailwindcss.com/)
+- **Icons**: [React Icons](https://react-icons.github.io/react-icons/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- **Interactive 3D Scene**: A 3D room with revolving icons that navigates between sections.
+- **Glassmorphism UI**: Modern, translucent overlays with blur effects.
+- **Dynamic Content**: Data-driven experience and project sections.
+- **Responsive Design**: optimized for both desktop and mobile viewing (3D scene adjusts accordingly).
+- **Project Details**: Clickable project cards with detailed modals, GitHub/Live links, and tech stack tags.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Getting Started
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/maulinouno/portfolio.git
+    cd portfolio
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Build for production:**
+    ```bash
+    npm run build
+    ```
+
+## Project Structure
+
+```
+src/
+├── components/         # React components
+│   ├── ModelIcon.tsx       # Single 3D Icon component
+│   ├── RevolvingIcons.tsx  # Group of rotating 3D icons
+│   ├── Room.tsx            # Main 3D Scene
+│   ├── Overlay.tsx         # 2D UI Overlay (Navigation, Content)
+│   ├── ProjectCard.tsx     # Project item card
+│   └── ProjectDetailModal.tsx # Detailed project view
+├── data/               # JSON data files (profile, experiences, contact)
+├── utils/              # Helper functions (colors, icons)
+├── App.tsx             # Main entry point
+└── main.tsx            # DOM renderer
+public/
+├── assets/             # 3D models (.glb) and images
+└── projects/           # Project screenshots
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Credits
+
+Designed and developed by **Achmad Maulana** (Lanavi).

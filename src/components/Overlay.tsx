@@ -3,75 +3,11 @@ import { useState } from 'react'
 import profile from '../data/profile.json'
 import experiences from '../data/experiences.json'
 import contact from '../data/contact.json'
-import { DiMsqlServer } from 'react-icons/di'
-import { FaJava } from 'react-icons/fa'
-import {
-    SiGo,
-    SiSpringboot,
-    SiApachekafka,
-    SiRedis,
-    SiPostgresql,
-    SiMysql,
-    SiElasticsearch,
-    SiDotnet,
-    SiSharp,
-    SiPhp,
-    SiLaravel,
-    SiSentry,
-    SiVite,
-    SiNextdotjs,
-    SiReact,
-    SiThreedotjs
-} from 'react-icons/si'
+import { getTechIcon, getTagColor } from '../utils/techUtils'
+import { ProjectCard } from './ProjectCard'
+import { ProjectDetailModal } from './ProjectDetailModal'
 
-const getTechIcon = (name: string) => {
-    const lower = name.toLowerCase()
 
-    if (lower === 'go' || lower === 'golang') return <SiGo title="Go" />
-    if (lower === 'java') return <FaJava title="Java" />
-    if (lower === 'spring boot') return <SiSpringboot title="Spring Boot" />
-    if (lower === 'kafka') return <SiApachekafka title="Kafka" />
-    if (lower === 'redis') return <SiRedis title="Redis" />
-    if (lower === 'psql' || lower === 'postgresql' || lower === 'postgres') return <SiPostgresql title="PostgreSQL" />
-    if (lower === 'mysql') return <SiMysql title="MySQL" />
-    if (lower === 'elastic search' || lower === 'elasticsearch') return <SiElasticsearch title="Elasticsearch" />
-    if (lower === 'ef core' || lower.includes('.net')) return <SiDotnet title=".NET / EF Core" />
-    if (lower.includes('c#')) return <SiSharp title="C#" />
-    if (lower === 'php') return <SiPhp title="PHP" />
-    if (lower === 'laravel') return <SiLaravel title="Laravel" />
-    if (lower === 'sentry') return <SiSentry title="Sentry" />
-    if (lower === 'vite' || lower === 'vite.js') return <SiVite title="Vite" />
-    if (lower === 'next.js' || lower === 'nextjs') return <SiNextdotjs title="Next.js" />
-    if (lower === 'react' || lower === 'react.js') return <SiReact title="React" />
-    if (lower === 'three.js' || lower === 'threejs' || lower === 'three') return <SiThreedotjs title="Three.js" />
-    if (lower === 'sql server') return <DiMsqlServer title="SQL Server" />
-    if (lower === 'quest db' || lower === 'questdb') return <span title="QuestDB" className="font-bold text-xs">Q</span>
-
-    return <span className="text-[10px]">{name}</span>
-}
-
-const getTagColor = (name: string) => {
-    const lower = name.toLowerCase()
-    if (lower === 'go' || lower === 'golang') return 'bg-blue-900/50 text-blue-300 border-blue-500/30'
-    if (lower === 'java') return 'bg-white/10 text-white border-white/30'
-    if (lower === 'spring boot') return 'bg-green-900/50 text-green-300 border-green-500/30'
-    if (lower === 'kafka') return 'bg-blue-900/50 text-blue-300 border-blue-500/30'
-    if (lower === 'redis') return 'bg-red-900/50 text-red-300 border-red-500/30'
-    if (lower.includes('postgre') || lower.includes('sql') || lower === 'psql') return 'bg-blue-900/50 text-blue-300 border-blue-500/30'
-    if (lower === 'questdb' || lower === 'quest db') return 'bg-purple-900/50 text-purple-300 border-purple-500/30'
-    if (lower.includes('microservices')) return 'bg-purple-900/50 text-purple-300 border-purple-500/30'
-    if (lower === 'php') return 'bg-indigo-900/50 text-indigo-300 border-indigo-500/30'
-    if (lower === 'laravel') return 'bg-red-900/50 text-red-300 border-red-500/30'
-    if (lower.includes('c#')) return 'bg-green-900/50 text-green-300 border-green-500/30'
-    if (lower.includes('ef core') || lower.includes('.net')) return 'bg-purple-900/50 text-purple-300 border-purple-500/30'
-    if (lower === 'sentry') return 'bg-pink-900/50 text-pink-300 border-pink-500/30'
-    if (lower.includes('vite')) return 'bg-purple-900/50 text-purple-300 border-purple-500/30'
-    if (lower.includes('next')) return 'bg-black/50 text-white border-white/30'
-    if (lower.includes('react')) return 'bg-cyan-900/50 text-cyan-300 border-cyan-500/30'
-    if (lower.includes('three')) return 'bg-white/10 text-white border-white/30'
-
-    return 'bg-white/5 text-gray-300 border-white/10'
-}
 
 
 interface OverlayProps {
@@ -81,6 +17,7 @@ interface OverlayProps {
 
 export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
     const [selectedProject, setSelectedProject] = useState<any>(null)
+    const [activeTab, setActiveTab] = useState(0)
 
     return (
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none flex flex-col justify-between overflow-hidden">
@@ -116,13 +53,44 @@ export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
                                 <p className="text-base text-gray-400">
                                     {profile.subDescription}
                                 </p>
-                                <div className="flex flex-wrap gap-2 text-xs font-mono pt-2">
-                                    {profile.tags.map(tag => (
-                                        <span key={tag} className={`px-2 py-1 rounded border flex items-center gap-1.5 ${getTagColor(tag)}`}>
-                                            {getTechIcon(tag)}
-                                            <span>{tag}</span>
-                                        </span>
-                                    ))}
+                                <div className="pt-4">
+                                    <div className="flex gap-2 overflow-x-auto pb-2 mb-2 custom-scrollbar mask-gradient-right">
+                                        {profile.skillGroups.map((group, idx) => (
+                                            <button
+                                                key={idx}
+                                                onClick={() => setActiveTab(idx)}
+                                                className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${activeTab === idx
+                                                        ? 'bg-white text-black border-white'
+                                                        : 'bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white'
+                                                    }`}
+                                            >
+                                                {group.category}
+                                            </button>
+                                        ))}
+                                    </div>
+
+                                    <div className="min-h-[120px]">
+                                        <AnimatePresence mode="wait">
+                                            <motion.div
+                                                key={activeTab}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -10 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="flex flex-wrap gap-2 text-xs font-mono"
+                                            >
+                                                {profile.skillGroups[activeTab].items.map((tag) => (
+                                                    <span
+                                                        key={tag}
+                                                        className={`px-3 py-1.5 rounded-md border flex items-center gap-2 transition-all hover:scale-105 bg-opacity-20 ${getTagColor(tag)}`}
+                                                    >
+                                                        <span className="text-sm">{getTechIcon(tag)}</span>
+                                                        <span>{tag}</span>
+                                                    </span>
+                                                ))}
+                                            </motion.div>
+                                        </AnimatePresence>
+                                    </div>
                                 </div>
                             </div>
                             <div className="mt-8 flex gap-4">
@@ -188,41 +156,13 @@ export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
 
                                             {exp.projects && (
                                                 <div className={`${exp.company.includes('Tetamba') ? "grid grid-cols-1 gap-3" : "space-y-3"} mt-4`}>
-                                                    {exp.projects.map((proj: any, i: number) => {
-                                                        const visibleTags = proj.tags ? proj.tags.slice(0, 3) : [];
-                                                        const remainingTags = proj.tags ? proj.tags.length - 3 : 0;
-
-                                                        return (
-                                                            <div
-                                                                key={i}
-                                                                className="bg-white/5 p-3 rounded-lg border border-white/10 hover:bg-white/10 transition-all cursor-pointer hover:border-white/30 active:scale-95 group"
-                                                                onClick={() => setSelectedProject(proj)}
-                                                            >
-                                                                {proj.tags ? (
-                                                                    <div className="flex justify-between items-center mb-1">
-                                                                        <strong className="text-white text-sm truncate pr-2 flex-1">{proj.title}</strong>
-                                                                        <div className="flex gap-1 flex-wrap justify-end shrink-0">
-                                                                            {visibleTags.map((t: string, idx: number) => (
-                                                                                <div key={idx} className={`p-1 w-6 h-6 rounded-md border flex items-center justify-center ${getTagColor(t)}`} title={t}>
-                                                                                    {getTechIcon(t)}
-                                                                                </div>
-                                                                            ))}
-                                                                            {remainingTags > 0 && (
-                                                                                <div className="px-1.5 h-6 rounded-md border border-white/10 bg-white/5 text-[10px] text-white flex items-center justify-center">
-                                                                                    +{remainingTags}
-                                                                                </div>
-                                                                            )}
-                                                                        </div>
-                                                                    </div>
-                                                                ) : (
-                                                                    <strong className="text-white block text-sm">{proj.title}</strong>
-                                                                )}
-                                                                <p className="text-xs text-gray-400 mt-1 line-clamp-2 group-hover:text-gray-300 transition-colors">
-                                                                    {proj.description}
-                                                                </p>
-                                                            </div>
-                                                        )
-                                                    })}
+                                                    {exp.projects.map((proj: any, i: number) => (
+                                                        <ProjectCard
+                                                            key={i}
+                                                            project={proj}
+                                                            onClick={setSelectedProject}
+                                                        />
+                                                    ))}
                                                 </div>
                                             )}
                                         </div>
@@ -289,81 +229,4 @@ export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
     )
 }
 
-const ProjectDetailModal = ({ project, onClose }: { project: any, onClose: () => void }) => {
-    return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
-            onClick={onClose}
-        >
-            <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
-                className="bg-[#1a1a24] w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 shadow-2xl flex flex-col pointer-events-auto"
-            >
-                <div className="relative h-64 sm:h-80 w-full shrink-0">
-                    <img
-                        src={project.image || "https://placehold.co/600x400/1e1e2e/ffffff?text=No+Image"}
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a24] via-transparent to-transparent" />
-                    <button
-                        onClick={onClose}
-                        className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 hover:bg-white/20 text-white flex items-center justify-center transition-all backdrop-blur-sm"
-                    >
-                        ✕
-                    </button>
-                </div>
 
-                <div className="p-8 -mt-20 relative">
-                    <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
-                        <div>
-                            <h2 className="text-4xl font-bold text-white mb-2">{project.title}</h2>
-                            <div className="flex gap-2 flex-wrap text-sm">
-                                {project.tags.map((tag: string) => (
-                                    <span key={tag} className={`px-2 py-1 rounded border flex items-center gap-1.5 ${getTagColor(tag)}`}>
-                                        {getTechIcon(tag)}
-                                        <span>{tag}</span>
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="flex gap-3">
-                            {project.github && (
-                                <a
-                                    href={project.github}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-white text-sm"
-                                >
-                                    GitHub
-                                </a>
-                            )}
-                            {project.link && (
-                                <a
-                                    href={project.link}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white shadow-lg shadow-cyan-500/20 transition-all text-sm font-bold"
-                                >
-                                    Visit Site ↗
-                                </a>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="space-y-6 text-gray-300 leading-relaxed">
-                        <p className="text-lg">
-                            {project.description || "No description available."}
-                        </p>
-                    </div>
-                </div>
-            </motion.div>
-        </motion.div>
-    )
-}

@@ -3,22 +3,60 @@
     "role": "Lead Software Engineer",
     "description": "Lead Software Engineer with 7+ years of experience building and scaling marketplace, fintech, and enterprise platforms across Southeast Asia.",
     "subDescription": "Proven in delivering revenue-critical systems including payments, bidding engines, logistics, inventory, and financial integrations. Experienced in Go, distributed systems, and microservices, with hands-on leadership in driving execution.",
-    "tags": [
-        "Go",
-        "Java",
-        "Spring Boot",
-        "PHP",
-        "Laravel",
-        "Microservices",
-        "Kafka",
-        "Redis",
-        "PostgreSQL",
-        "MySQL",
-        "Elasticsearch",
-        "C#",
-        ".Net",
-        "EF Core",
-        "SQL Server",
-        "QuestDB"
+    "skillGroups": [
+        {
+            "category": "Programming Language",
+            "items": [
+                "Go",
+                "Java",
+                "Spring Boot",
+                "C#",
+                "EF Core",
+                "PHP (Yii2, Laravel)",
+                "Python",
+                "JavaScript"
+            ]
+        },
+        {
+            "category": "Architecture & Development",
+            "items": [
+                "Microservices",
+                "RESTful & gRPC API",
+                "Fullstack Development",
+                "System Design",
+                "Cloud Deployment",
+                "CI/CD"
+            ]
+        },
+        {
+            "category": "Search & Data Tools",
+            "items": [
+                "MySQL",
+                "PostgreSQL",
+                "SQL Server",
+                "Elasticsearch",
+                "Redis",
+                "Kafka",
+                "QuestDB"
+            ]
+        },
+        {
+            "category": "Leadership & Management",
+            "items": [
+                "Team Leadership",
+                "Mentoring",
+                "Agile/Scrum",
+                "Cross-country Project Management"
+            ]
+        },
+        {
+            "category": "Tools & Platform",
+            "items": [
+                "Linux (Ubuntu)",
+                "Windows",
+                "Git",
+                "Docker"
+            ]
+        }
     ]
 }
