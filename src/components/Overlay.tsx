@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 import profile from '../data/profile.json'
 import experiences from '../data/experiences.json'
 import contact from '../data/contact.json'
@@ -44,7 +45,7 @@ const getTechIcon = (name: string) => {
     if (lower === 'react' || lower === 'react.js') return <SiReact title="React" />
     if (lower === 'three.js' || lower === 'threejs' || lower === 'three') return <SiThreedotjs title="Three.js" />
     if (lower === 'sql server') return <DiMsqlServer title="SQL Server" />
-    if (lower === 'quest db' || lower === 'questdb') return <span title="QuestDB" className="font-bold text-xs">QuestDB</span>
+    if (lower === 'quest db' || lower === 'questdb') return <span title="QuestDB" className="font-bold text-xs">Q</span>
 
     return <span className="text-[10px]">{name}</span>
 }
@@ -79,17 +80,20 @@ interface OverlayProps {
 }
 
 export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
+    const [selectedProject, setSelectedProject] = useState<any>(null)
+
     return (
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none flex flex-col justify-between overflow-hidden">
-            {/* Navbar */}
             <header className="px-8 py-6 flex justify-between items-center pointer-events-auto w-full z-10">
-                <div>
-                    <h1 className="text-2xl font-bold tracking-tighter text-white">ACHMAD.DEV</h1>
-                    <p className="text-xs text-gray-400 tracking-widest">{profile.role.toUpperCase()}</p>
+                <div className="flex items-center gap-3">
+                    <img src="/favicon.png" alt="Ln Icon" className="w-8 h-8 object-contain" />
+                    <div>
+                        <h1 className="text-2xl font-bold tracking-tighter text-white leading-none">Lanavi</h1>
+                        <p className="text-[10px] text-gray-400 tracking-widest leading-none">{profile.role.toUpperCase()}</p>
+                    </div>
                 </div>
             </header>
 
-            {/* Content Sections */}
             <main className="flex-1 w-full relative">
                 <AnimatePresence mode="wait">
                     {section === 0 && (
@@ -147,7 +151,6 @@ export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
                             transition={{ duration: 0.5, ease: "easeOut" }}
                             className="absolute inset-0 pointer-events-none z-20 flex flex-col items-start"
                         >
-                            {/* Header Fixed at Top - Reduced Padding */}
                             <div className="w-full bg-[#171720]/90 backdrop-blur-md border-b border-white/10 pointer-events-auto py-2">
                                 <div className="container mx-auto px-4 md:px-10">
                                     <h2 className="text-3xl font-bold text-white">
@@ -156,7 +159,6 @@ export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
                                 </div>
                             </div>
 
-                            {/* Horizontal Scroll Container - h-fit to allow clicks below */}
                             <div className="w-full h-fit overflow-x-auto pointer-events-auto items-start p-4 md:p-10 snap-x snap-mandatory">
                                 <div className="flex gap-8 min-w-max">
                                     {experiences.map((exp: any) => (
@@ -186,25 +188,41 @@ export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
 
                                             {exp.projects && (
                                                 <div className={`${exp.company.includes('Tetamba') ? "grid grid-cols-1 gap-3" : "space-y-3"} mt-4`}>
-                                                    {exp.projects.map((proj: any, i: number) => (
-                                                        <div key={i} className="bg-white/5 p-3 rounded-lg border border-white/10">
-                                                            {proj.tags ? (
-                                                                <div className="flex justify-between items-center mb-1">
-                                                                    <strong className="text-white text-sm">{proj.title}</strong>
-                                                                    <div className="flex gap-2 flex-wrap justify-end max-w-[50%]">
-                                                                        {proj.tags.map((t: string, idx: number) => (
-                                                                            <div key={idx} className={`p-1.5 rounded-md border flex items-center justify-center hover:scale-105 transition-all ${getTagColor(t)}`} title={t}>
-                                                                                {getTechIcon(t)}
-                                                                            </div>
-                                                                        ))}
+                                                    {exp.projects.map((proj: any, i: number) => {
+                                                        const visibleTags = proj.tags ? proj.tags.slice(0, 3) : [];
+                                                        const remainingTags = proj.tags ? proj.tags.length - 3 : 0;
+
+                                                        return (
+                                                            <div
+                                                                key={i}
+                                                                className="bg-white/5 p-3 rounded-lg border border-white/10 hover:bg-white/10 transition-all cursor-pointer hover:border-white/30 active:scale-95 group"
+                                                                onClick={() => setSelectedProject(proj)}
+                                                            >
+                                                                {proj.tags ? (
+                                                                    <div className="flex justify-between items-center mb-1">
+                                                                        <strong className="text-white text-sm truncate pr-2 flex-1">{proj.title}</strong>
+                                                                        <div className="flex gap-1 flex-wrap justify-end shrink-0">
+                                                                            {visibleTags.map((t: string, idx: number) => (
+                                                                                <div key={idx} className={`p-1 w-6 h-6 rounded-md border flex items-center justify-center ${getTagColor(t)}`} title={t}>
+                                                                                    {getTechIcon(t)}
+                                                                                </div>
+                                                                            ))}
+                                                                            {remainingTags > 0 && (
+                                                                                <div className="px-1.5 h-6 rounded-md border border-white/10 bg-white/5 text-[10px] text-white flex items-center justify-center">
+                                                                                    +{remainingTags}
+                                                                                </div>
+                                                                            )}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            ) : (
-                                                                <strong className="text-white block text-sm">{proj.title}</strong>
-                                                            )}
-                                                            <p className="text-xs text-gray-400 mt-1">{proj.tech}</p>
-                                                        </div>
-                                                    ))}
+                                                                ) : (
+                                                                    <strong className="text-white block text-sm">{proj.title}</strong>
+                                                                )}
+                                                                <p className="text-xs text-gray-400 mt-1 line-clamp-2 group-hover:text-gray-300 transition-colors">
+                                                                    {proj.description}
+                                                                </p>
+                                                            </div>
+                                                        )
+                                                    })}
                                                 </div>
                                             )}
                                         </div>
@@ -258,9 +276,94 @@ export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
                 </AnimatePresence>
             </main>
 
+            <AnimatePresence>
+                {selectedProject && (
+                    <ProjectDetailModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+                )}
+            </AnimatePresence>
+
             <footer className="p-8 text-center text-gray-500 text-xs relative z-10 pointer-events-none">
-                © 2026 {profile.name}. Built with fullstack passion.
+                © 2026 {profile.name}.
             </footer>
         </div>
+    )
+}
+
+const ProjectDetailModal = ({ project, onClose }: { project: any, onClose: () => void }) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            onClick={onClose}
+        >
+            <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-[#1a1a24] w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 shadow-2xl flex flex-col pointer-events-auto"
+            >
+                <div className="relative h-64 sm:h-80 w-full shrink-0">
+                    <img
+                        src={project.image || "https://placehold.co/600x400/1e1e2e/ffffff?text=No+Image"}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a24] via-transparent to-transparent" />
+                    <button
+                        onClick={onClose}
+                        className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 hover:bg-white/20 text-white flex items-center justify-center transition-all backdrop-blur-sm"
+                    >
+                        ✕
+                    </button>
+                </div>
+
+                <div className="p-8 -mt-20 relative">
+                    <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
+                        <div>
+                            <h2 className="text-4xl font-bold text-white mb-2">{project.title}</h2>
+                            <div className="flex gap-2 flex-wrap text-sm">
+                                {project.tags.map((tag: string) => (
+                                    <span key={tag} className={`px-2 py-1 rounded border flex items-center gap-1.5 ${getTagColor(tag)}`}>
+                                        {getTechIcon(tag)}
+                                        <span>{tag}</span>
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex gap-3">
+                            {project.github && (
+                                <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-white text-sm"
+                                >
+                                    GitHub
+                                </a>
+                            )}
+                            {project.link && (
+                                <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white shadow-lg shadow-cyan-500/20 transition-all text-sm font-bold"
+                                >
+                                    Visit Site ↗
+                                </a>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="space-y-6 text-gray-300 leading-relaxed">
+                        <p className="text-lg">
+                            {project.description || "No description available."}
+                        </p>
+                    </div>
+                </div>
+            </motion.div>
+        </motion.div>
     )
 }

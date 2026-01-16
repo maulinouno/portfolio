@@ -16,7 +16,10 @@
         "projects": [
             {
                 "title": "Bidding System",
-                "tech": "",
+                "description": "A comprehensive bidding platform allowing vendors to compete for projects. Features include real-time bid updates, automated ranking, and contract generation.",
+                "image": "/projects/renos.bidding.png",
+                "link": "https://www.renos.id/bidding",
+                "github": "",
                 "tags": [
                     "Go",
                     "Next.js",
@@ -26,7 +29,10 @@
             },
             {
                 "title": "Hometrend System",
-                "tech": "",
+                "description": "An analytics-driven system to track and predict home decoration trends, helping sellers optimize their inventory.",
+                "image": "/projects/renos.hometrend.png",
+                "link": "https://www.renos.id/home-trend",
+                "github": "",
                 "tags": [
                     "Go",
                     "Next.js",
@@ -36,7 +42,10 @@
             },
             {
                 "title": "Design & Build Platform",
-                "tech": "",
+                "description": "Platform connecting homeowners with interior designers and contractors. Includes project management tools and payment escrow.",
+                "image": "/projects/renos.dnb.png",
+                "link": "https://dnb.nocnoc.com/login",
+                "github": "",
                 "tags": [
                     "Go",
                     "Next.js",
@@ -45,7 +54,10 @@
             },
             {
                 "title": "3D Room Decoration Add-on App",
-                "tech": "",
+                "description": "Interactive 3D tool allowing users to visualize furniture in their room before purchasing. Built with Three.js and React.",
+                "image": "/projects/renos.3d-room.png",
+                "link": "https://3d-room.lanavi.site/",
+                "github": "",
                 "tags": [
                     "Vite.js",
                     "React.js",
@@ -70,7 +82,10 @@
         "projects": [
             {
                 "title": "Renos.id",
-                "tech": "Go microservices for listings, users, transactions, and internal microservices.",
+                "description": "Core marketplace platform development. Handled high-traffic API endpoints, database optimization, and third-party integrations.",
+                "image": "/projects/renos.renosid.png",
+                "link": "https://www.renos.id",
+                "github": "",
                 "tags": [
                     "Go",
                     "Redis",
@@ -91,7 +106,10 @@
         "projects": [
             {
                 "title": "DCM (Monitoring)",
-                "tech": "Data center monitoring with WebSocket CCTV & sensors.",
+                "description": "Developed a data center monitoring system with websocket-based CCTV streaming, actuator triggers, real-time sensor monitoring, and logging for administrators to track operations.",
+                "image": "/projects/synapsis.dcm.png",
+                "link": "",
+                "github": "",
                 "tags": [
                     "Go",
                     "Kafka",
@@ -100,7 +118,10 @@
             },
             {
                 "title": "DMS Enercentrik",
-                "tech": "IoT driver monitoring (JTT protocol).",
+                "description": "Built an IoT-based driver monitoring system using JTT protocol, enabling real-time streaming, alarms, and reporting for fleet management.",
+                "image": "/projects/synapsis.dms.png",
+                "link": "",
+                "github": "",
                 "tags": [
                     "Go",
                     "Kafka",
@@ -119,16 +140,23 @@
         "projects": [
             {
                 "title": "Ecohub (BRI) - Backend",
-                "tech": "Microsvc marketplace with BRIVA & external partners.",
+                "description": "Created microservices for MSME marketplace with BRIVA and external partners (Tokopedia, Dagangan). Utilized Redis for caching and session management, and Kafka for event-driven communication across services.",
+                "image": "/projects/tetamba.ecohub.png",
+                "link": "https://ecohub.id",
+                "github": "",
                 "tags": [
                     "Go",
                     "Redis",
-                    "Kafka"
+                    "Kafka",
+                    "PostgreSQL"
                 ]
             },
             {
                 "title": "Procurement FAM (BRI) - Backend",
-                "tech": "Procurement & asset management backend.",
+                "description": "Designed procurement & asset management backend integrated with BRISMILE data pipelines.",
+                "image": "/projects/tetamba.famp.png",
+                "link": "",
+                "github": "",
                 "tags": [
                     "Java",
                     "Spring Boot"
@@ -136,7 +164,10 @@
             },
             {
                 "title": "iNMS Dashboard (BRI) - Fullstack",
-                "tech": "Network metrics monitoring dashboard.",
+                "description": "Built monitoring dashboard for network metrics and integrated Go-based data collectors from BRI services.",
+                "image": "/projects/tetamba.bri.png",
+                "link": "",
+                "github": "",
                 "tags": [
                     "Go",
                     "Laravel"
@@ -144,37 +175,55 @@
             },
             {
                 "title": "Penjaminan Terpadu (Jamkrindo) - Fullstack",
-                "tech": "Underwriting system (IJP, Accrual, Reporting).",
+                "description": "Led microservice-based underwriting system covering submission, approval, IJP Payment, corrections, accrual, and reporting.",
+                "image": "/projects/tetamba.jamkrindo.png",
+                "link": "",
+                "github": "",
                 "tags": [
                     "Java",
                     "Spring Boot",
-                    "PHP"
+                    "PHP",
+                    "SQL Server",
+                    "MySQL"
                 ]
             },
             {
                 "title": "FLPP BTN (Jamkrindo) - Fullstack",
-                "tech": "Guarantee & claim web system for BTN.",
+                "description": "Built guarantee, claim, and subrogation web system used by BTN and Jamkrindo in two-way online workflows.",
+                "image": "/projects/tetamba.jamkrindo.png",
+                "link": "",
+                "github": "",
                 "tags": [
                     "Java",
                     "Spring Boot",
-                    "PHP"
+                    "PHP",
+                    "SQL Server",
+                    "MySQL"
                 ]
             },
             {
                 "title": "E-Learning (Salemba Empat) - Backend",
-                "tech": "Interactive learning with exams & modules.",
+                "description": "Developed interactive e-learning system with packaged materials, online exams, and training modules.",
+                "image": "/projects/pse4.elearning.png",
+                "link": "https://elearning.penerbitsalemba.com/home",
+                "github": "",
                 "tags": [
                     "C#",
-                    "EF Core"
+                    "EF Core",
+                    "PostgreSQL"
                 ]
             },
             {
                 "title": "Book Marketplace (Salemba Empat) - Backend",
-                "tech": "Marketplace backend & CMS.",
+                "description": "Built marketplace backend and admin CMS (promo, voucher, content, reporting). Implemented Go scripting for user migration.",
+                "image": "/projects/pse4.book.png",
+                "link": "https://penerbitsalemba.com/",
+                "github": "",
                 "tags": [
                     "C#",
                     "EF Core",
-                    "Go"
+                    "Go",
+                    "PostgreSQL"
                 ]
             }
         ]

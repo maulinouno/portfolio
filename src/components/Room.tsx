@@ -28,7 +28,6 @@ export const Room = ({ section, onSectionChange }: RoomProps) => {
     const { scene: floorScene } = useGLTF('/assets/floor.glb')
     const { scene: tableScene } = useGLTF('/assets/table.glb')
 
-    // Memoize materials to prevent recreating them on every render
     const floorMaterial = useMemo(() => {
         let mat: THREE.Material | undefined;
         floorScene.traverse((child) => {
@@ -172,7 +171,6 @@ const ModelIcon = ({ path, colors, isActive, onClick }: { path: string, colors: 
     const { nodes } = useGLTF(path)
     const texture = useMemo(() => createGradientTexture(colors[0], colors[1]), [colors])
 
-    // Memoize emissive color to prevent object churn
     const emissiveColor = useMemo(() => new THREE.Color(colors[1]), [colors])
 
     const [hovered, setHover] = useState(false)
