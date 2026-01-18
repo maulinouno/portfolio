@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import { FaLinkedin, FaGithub } from 'react-icons/fa'
 import { useState } from 'react'
 import profile from '../data/profile.json'
 import experiences from '../data/experiences.json'
@@ -60,8 +61,8 @@ export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
                                                 key={idx}
                                                 onClick={() => setActiveTab(idx)}
                                                 className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${activeTab === idx
-                                                        ? 'bg-white text-black border-white'
-                                                        : 'bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white'
+                                                    ? 'bg-white text-black border-white'
+                                                    : 'bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white'
                                                     }`}
                                             >
                                                 {group.category}
@@ -187,11 +188,24 @@ export const Overlay = ({ section, onSectionChange }: OverlayProps) => {
 
                                 <div className="space-y-6 text-left">
                                     <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-cyan-900/50 flex items-center justify-center text-cyan-400">🔗</div>
+                                        <div className="w-10 h-10 rounded-full bg-cyan-900/50 flex items-center justify-center text-cyan-400">
+                                            <FaLinkedin size={20} />
+                                        </div>
                                         <div>
                                             <div className="text-gray-400 text-xs uppercase tracking-wider">{contact.linkedin.label}</div>
                                             <a href={contact.linkedin.url} target="_blank" rel="noreferrer" className="text-white hover:text-cyan-400 transition-colors">
                                                 {contact.linkedin.value}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-10 h-10 rounded-full bg-gray-800/50 flex items-center justify-center text-white">
+                                            <FaGithub size={20} />
+                                        </div>
+                                        <div>
+                                            <div className="text-gray-400 text-xs uppercase tracking-wider">{contact.github.label}</div>
+                                            <a href={contact.github.url} target="_blank" rel="noreferrer" className="text-white hover:text-cyan-400 transition-colors">
+                                                {contact.github.value}
                                             </a>
                                         </div>
                                     </div>
